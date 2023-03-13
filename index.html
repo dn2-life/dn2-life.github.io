@@ -11,7 +11,7 @@
       }
       .container
       {
-        z-index: 999;
+        /* z-index: 999; */
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -22,7 +22,7 @@
       .component {
         /* position: absolute; */
         position: fixed;
-        z-index: 999;
+        /* z-index: 100; */
         bottom: 0;
         /* top: 10vh; */
         /* left: 50%; */
@@ -32,6 +32,7 @@
       }
 
       .background {
+        z-index: -1;
         position: fixed;
         top: 0;
         left: 0;
@@ -39,12 +40,106 @@
         height: 100%;
         object-fit: cover;
       }
+
+      .modal {
+          display: none;
+          position: fixed;
+          z-index: 1;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          overflow: auto;
+          background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-content {
+          /* z-index: 1000; */
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          background-color: rgba(255, 255, 255, 0.2);
+          margin: 10% auto;
+          padding: 20px;
+          border: 1px solid #888;
+          border-radius: 10px;
+          width: 80%;
+          max-width: 80vw;
+        }
+
+        .close {
+          display: none;
+          color: #aaa;
+          float: right;
+          font-size: 28px;
+          font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+          color: black;
+          text-decoration: none;
+          cursor: pointer;
+        }
+
+        .play {
+          z-index: 999;
+          background-color: #fff4ed;
+          color: #fed0c2;
+          border-radius: 10rem;
+          border: #fff4ed;
+          /* height: 5vh; */
+          font-size: 3rem;
+          position: absolute;
+          top: 5vh;
+          right: 5vw;
+        }
+
+        #video-player {
+          width: 100%;
+          height: 100%;
+        }
+
     </style>
   </head>
   <body>
     <div class="container">
-      <img class="component" src="./conponent.png"">
+      <img class="component" src="./conponent.png">
+      <button class="play" onclick="playVideo()">Demo Video</button>
+
+      <div id="video-modal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <video id="video-player" controls>
+            <source src="./demo.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
     </div>
     <img class="background" src="./index.jpg">
+    <script>
+      function playVideo() {
+      var modal = document.getElementById("video-modal");
+      var video = document.getElementById("video-player");
+      var span = document.getElementsByClassName("close")[0];
+
+      video.load();
+      modal.style.display = "block";
+
+      span.onclick = function() {
+        video.pause();
+        modal.style.display = "none";
+      }
+
+      window.onclick = function(event) {
+        if (event.target == modal) {
+          video.pause();
+          modal.style.display = "none";
+        }
+      }
+    }
+    </script>
   </body>
 </html>
