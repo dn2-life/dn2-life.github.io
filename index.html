@@ -2,15 +2,36 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Gabby World Index</title>
+    <title>Gabby World - Coming Soon</title>
     <style>
       html, body {
         margin: 0;
         padding: 0;
         height: 100%;
       }
-      
-      img {
+      .container
+      {
+        z-index: 999;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        width: 100vw;
+      }
+      .component {
+        /* position: absolute; */
+        position: fixed;
+        z-index: 999;
+        bottom: 0;
+        /* top: 10vh; */
+        /* left: 50%; */
+        width: auto;
+        height: 90vh;
+        /* object-fit: cover; */
+      }
+
+      .background {
         position: fixed;
         top: 0;
         left: 0;
@@ -21,6 +42,9 @@
     </style>
   </head>
   <body>
-    <img src="./index.jpg">
+    <div class="container">
+      <img class="component" src="./conponent.png"">
+    </div>
+    <img class="background" src="./index.jpg">
   </body>
 </html>
